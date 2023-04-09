@@ -1,17 +1,21 @@
-﻿namespace ContosoUniversity.Migrations {
-  using System;
-  using System.Collections.Generic;
-  using System.Data.Entity.Migrations;
-  using System.Linq;
-  using ContosoUniversity_1.Models;
+﻿namespace ContosoUniversity.Migrations
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+    using ContosoUniversity_1.Models;
 
-  internal sealed class Configuration:
-    DbMigrationsConfiguration < ContosoUniversity_1.DAL.SchoolContext > {
-      public Configuration() {
-        AutomaticMigrationsEnabled = false;
-      }
-      protected override void Seed(ContosoUniversity_1.DAL.SchoolContext context) {
-        var students = new List < Student > {
+    internal sealed class Configuration :
+      DbMigrationsConfiguration<ContosoUniversity_1.DAL.SchoolContext>
+    {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+        }
+        protected override void Seed(ContosoUniversity_1.DAL.SchoolContext context)
+        {
+            var students = new List<Student> {
           new Student {
             FirstMidName = "Carson", LastName = "Alexander",
               EnrollmentDate = DateTime.Parse("2010-09-01")
@@ -45,9 +49,10 @@
               EnrollmentDate = DateTime.Parse("2005-08-11")
           }
         };
-        students.ForEach(s => context.Students.AddOrUpdate(p => p.LastName, s));
-        context.SaveChanges();
-        var courses = new List < Course > {
+            students.ForEach(s => context.Students.AddOrUpdate(p => p.LastName, s));
+            context.SaveChanges();
+
+        var courses = new List<Course> {
           new Course {
             CourseId = 1050, Title = "Chemistry", Credits = 3,
           },
@@ -70,9 +75,9 @@
             CourseId = 2042, Title = "Literature", Credits = 4,
           }
         };
-        courses.ForEach(s => context.Courses.AddOrUpdate(p => p.Title, s));
-        context.SaveChanges();
-        var enrollments = new List < Enrollment > {
+            courses.ForEach(s => context.Courses.AddOrUpdate(p => p.Title, s));
+            context.SaveChanges();
+            var enrollments = new List<Enrollment> {
           new Enrollment {
             StudentId = students.Single(s => s.LastName == "Alexander").StudentId,
               CourseId = courses.Single(c => c.Title == "Chemistry").CourseId,
@@ -128,16 +133,18 @@
               Grade = Grade.B
           }
         };
-        foreach(Enrollment e in enrollments) {
-          var enrollmentInDataBase = context.Enrollments.Where(
-            s =>
-            s.Student.StudentId == e.StudentId &&
-            s.Course.CourseId == e.CourseId).SingleOrDefault();
-          if (enrollmentInDataBase == null) {
-            context.Enrollments.Add(e);
-          }
+            foreach (Enrollment e in enrollments)
+            {
+                var enrollmentInDataBase = context.Enrollments.Where(
+                  s =>
+                  s.Student.StudentId == e.StudentId &&
+                  s.Course.CourseId == e.CourseId).SingleOrDefault();
+                if (enrollmentInDataBase == null)
+                {
+                    context.Enrollments.Add(e);
+                }
+            }
+            context.SaveChanges();
         }
-        context.SaveChanges();
-      }
     }
 }

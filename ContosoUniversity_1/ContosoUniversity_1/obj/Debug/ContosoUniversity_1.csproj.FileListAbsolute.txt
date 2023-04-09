@@ -126,3 +126,5 @@ F:\.net\ContosoUniversity_1\ContosoUniversity_1\bin\System.Memory.xml
 F:\.net\ContosoUniversity_1\ContosoUniversity_1\bin\System.Numerics.Vectors.xml
 F:\.net\ContosoUniversity_1\ContosoUniversity_1\bin\System.Runtime.CompilerServices.Unsafe.xml
 F:\.net\ContosoUniversity_1\ContosoUniversity_1\bin\System.Threading.Tasks.Extensions.xml
+F:\.net\ContosoUniversity_1\ContosoUniversity_1\obj\Debug\ContosoUniversity.Migrations.InitialCreate.resources
+F:\.net\ContosoUniversity_1\ContosoUniversity_1\obj\Debug\ContosoUniversity_1.csproj.GenerateResource.cache
